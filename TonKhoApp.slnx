@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TonKhoApp.Application/TonKhoApp.Application.csproj" />
+    <Project Path="src/TonKhoApp.Domain/TonKhoApp.Domain.csproj" />
+    <Project Path="src/TonKhoApp.Infrastructure/TonKhoApp.Infrastructure.csproj" />
+    <Project Path="src/TonKhoApp.WebApi/TonKhoApp.WebApi.csproj" />
+  </Folder>
+</Solution>

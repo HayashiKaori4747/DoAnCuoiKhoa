@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý vai trò</title>
+    <link rel="stylesheet" href="/assets/css/products-list.css">
+    <link rel="stylesheet" href="/assets/vendor/dataTables-2.3.4.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.png">
+    <link rel="stylesheet" href="/assets/css/topbar.css">
+    <link rel="stylesheet" href="/assets/css/controls.css">
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="/orders-list">PO-ZAIKO</a></div>
+        <div class="menu-btn buttons-group">
+
+            <ul></ul>
+        </div>
+        <div class="user-dropdown">
+            <button class="user-btn"><span id="user-fullname">...</span> ▼</button>
+            <div class="user-dropdown-content">
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Quản lý vai trò</h1>
+
+        <div class="search">
+            <button id="btn-create">Tạo vai trò mới</button>
+        </div>
+
+        <table class="products-table" id="roles-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã</th>
+                    <th>Tên hiển thị</th>
+                    <th>Mô tả</th>
+                    <th>Số tài khoản</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/vendor/dataTables-2.3.4.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/roles-list.js"></script>
+</body>
+</html>

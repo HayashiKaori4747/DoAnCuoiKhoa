@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết đơn hàng</title>
+    <link rel="stylesheet" href="/assets/css/order-detail.css">
+    <link rel="stylesheet" href="/assets/vendor/dataTables-2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/vendor/jquery-ui-1.13.3.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.png">
+    <link rel="stylesheet" href="/assets/css/topbar.css">
+    <link rel="stylesheet" href="/assets/css/controls.css">
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="/orders-list">PO-ZAIKO</a></div>
+        <div class="menu-btn buttons-group">
+
+            <ul></ul>
+        </div>
+        <div class="user-dropdown">
+            <button class="user-btn"><span id="user-fullname">...</span> ▼</button>
+            <div class="user-dropdown-content">
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="button-group">
+            <div>
+                <a href="/orders-list" class="btn">Quay về</a>
+            </div>
+            <div>
+
+                <button id="confirmStockBtn" style="display: none;">Xác nhận nhập kho</button>
+                <button id="confirmOrderBtn" style="display: none;">Xác nhận đơn hàng</button>
+                <button id="saveBtn" style="display: none;">Lưu lại</button>
+                <button id="createNewBtn" style="display: none;">Tạo mới</button>
+
+                <button id="deleteOrderBtn" style="display: none;">Xoá đơn</button>
+                <button id="cancelOrderBtn" style="display: none;">Huỷ đơn</button>
+            </div>
+        </div>
+        <h2>Thông tin đơn hàng</h2>
+
+        <form id="mainForm">
+            <div class="data_area">
+                <div class="data">
+                    <label for="vendor">Nhà cung cấp<span class="required">*</span></label>
+                    <select id="vendor" name="vendor" required>
+                        <option value="">-- Chọn nhà cung cấp --</option>
+                    </select>
+
+                    <label for="PO-person">NV phụ trách<span class="required">*</span></label>
+                    <select id="PO-person" name="PO-person" required>
+                        <option value="">-- Chọn nhân viên --</option>
+                    </select><br>
+
+                    <label for="PO-date">Ngày mua hàng<span class="required">*</span></label>
+                    <input type="text" id="PO-date" name="date1" placeholder="Chọn ngày" required readonly>
+                    <label>Tổng tiền</label>
+                    <input type="text" name="net1" readonly class="readonly-input">
+                </div>
+
+                <div class="note">
+                    <label>Phụ chú</label>
+                    <textarea name="note1"></textarea>
+                </div>
+            </div>
+        </form>
+        <hr>
+
+        <h2>Thông tin chi tiết</h2>
+        <table class="PO-table" id="PO-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button type="button" id="addRow" style="display: none;">Thêm dòng</button>
+        <button type="button" id="deleteRow" style="display: none;">Xóa dòng</button>
+        <button type="button" id="productSearch" style="display: none;">Tìm kiếm SP</button>
+    </div>
+
+    <div class="search-table" style="display: none;">
+        <h3>Tìm kiếm sản phẩm</h3>
+        <input type="text" id="searchProductInput" placeholder="Nhập tên hoặc mã sản phẩm">
+        <button id="btn-show-products">Hiển thị</button>
+        <table id="searchProductTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Đơn vị</th>
+                    <th>Đơn giá</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="btn-close-popup">Đóng</button>
+    </div>
+
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/vendor/jquery-ui-1.13.3.min.js"></script>
+    <script src="/assets/vendor/dataTables-2.3.4.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/order-detail.js"></script>
+</body>
+</html>

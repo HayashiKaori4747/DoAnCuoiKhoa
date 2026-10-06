@@ -1,0 +1,151 @@
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    margin: 0;
+    padding: 0 20px;
+    background-color: green;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+}
+
+.topbar .logo {
+    position: static;
+    top: auto;
+    left: auto;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.topbar .logo a {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1;
+    color: #eaf8ec;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.topbar .logo img {
+    height: 40px;
+    margin: 0;
+}
+
+.topbar .menu-btn {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    margin: 0 0 0 28px;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.topbar .menu-btn::-webkit-scrollbar {
+    display: none;
+}
+
+.topbar .menu-btn ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: visible;
+    background: transparent;
+}
+
+.topbar .menu-btn ul li {
+    float: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.topbar .menu-btn ul li a {
+    display: block;
+    margin: 0;
+    padding: 8px 12px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+
+.topbar .menu-btn ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.topbar .menu-btn ul li a.active {
+    background-color: rgba(255, 255, 255, 0.22);
+    font-weight: bold;
+}
+
+.topbar .user-dropdown {
+    position: relative;
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding-left: 16px;
+}
+
+.topbar .user-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.topbar .user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 38px;
+    min-width: 170px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 1100;
+}
+
+.topbar .user-dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.topbar .user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.topbar ~ .container,
+.topbar ~ .dashboard-container {
+    padding-top: 84px;
+}

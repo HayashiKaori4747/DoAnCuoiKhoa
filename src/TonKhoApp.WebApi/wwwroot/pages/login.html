@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tồn kho | login</title>
+
+    <link rel="stylesheet" href="/assets/css/login.css">
+</head>
+<body>
+    <div class = "container">
+        <div class="login-form">
+            <h1>Đăng nhập</h1>
+        <img src='/assets/img/logo.png' style='width:100px; height:100px' alt="logo"/>
+        <form class="login">
+                <div class ="form-group">
+                <div class="user-id">
+                    <label for="user-id">User ID</label>
+                    <input type="text" id="user-id" placeholder="Nhập User ID">
+                </div>
+                <div class="user-password">
+                    <label for="user-password">Password</label>
+                    <input type="password" id="user-password" placeholder="Nhập password">
+                </div>
+                <button type="submit">Đăng nhập</button>
+                <div id="error-msg" style="color:red; margin-top:10px; display:none;"></div>
+            </div>
+        </form>
+        <hr>
+
+        <h5>Chưa có tài khoản, hoặc quên User ID / mật khẩu? Liên hệ quản trị viên.</h5>
+        <p style="font-size:12px; color:#777; margin-top:6px;">
+            Đăng nhập được rồi thì tự đổi mật khẩu tại menu tên mình ở góc trên bên phải → Đổi mật khẩu.
+        </p>
+        </div>
+    </div>
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/form-errors.js"></script>
+    <script src="/assets/js/login.js"></script>
+</body>
+</html>

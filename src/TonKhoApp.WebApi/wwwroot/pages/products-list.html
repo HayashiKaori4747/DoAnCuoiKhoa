@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="/assets/css/products-list.css">
+    <link rel="stylesheet" href="/assets/vendor/dataTables-2.3.4.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.png">
+    <link rel="stylesheet" href="/assets/css/topbar.css">
+    <link rel="stylesheet" href="/assets/css/controls.css">
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="/orders-list">PO-ZAIKO</a></div>
+        <div class="menu-btn buttons-group">
+
+            <ul></ul>
+        </div>
+        <div class="user-dropdown">
+            <button class="user-btn"><span id="user-fullname">...</span> ▼</button>
+            <div class="user-dropdown-content">
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Danh sách sản phẩm</h1>
+
+        <div class="search">
+            <input type="text" placeholder="Nhập mã hoặc tên sản phẩm" id="search-input">
+            <button id="btn-search">Tìm kiếm</button>
+            <button id="btn-create">Tạo mới</button>
+        </div>
+
+        <table class="products-table" id="products-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã SP</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn vị</th>
+                    <th>Đơn giá</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/vendor/dataTables-2.3.4.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/products-list.js"></script>
+</body>
+</html>

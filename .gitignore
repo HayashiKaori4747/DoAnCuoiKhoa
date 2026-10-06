@@ -1,0 +1,17 @@
+# Kết quả build
+bin/
+obj/
+
+# Cấu hình máy cá nhân
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Bí mật - KHÔNG BAO GIỜ commit
+# Chuỗi kết nối và JwtSettings:SecretKey nằm ở User Secrets hoặc biến môi trường
+*.env
+appsettings.*.local.json
+
+# Sao lưu database - chứa hash mật khẩu của mọi tài khoản
+*.bak

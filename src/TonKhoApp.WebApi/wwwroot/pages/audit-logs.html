@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật ký thao tác</title>
+    <link rel="stylesheet" href="/assets/css/products-list.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.png">
+    <link rel="stylesheet" href="/assets/css/topbar.css">
+    <link rel="stylesheet" href="/assets/css/controls.css">
+    <style>
+        .audit-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 16px; }
+        .audit-filters .f { display: flex; flex-direction: column; gap: 4px; }
+        .audit-filters label { font-size: 12px; color: #5d6d7e; }
+        .audit-filters input, .audit-filters select {
+            padding: 7px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;
+        }
+        .audit-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .audit-table th {
+            padding: 8px; text-align: left; border-bottom: 2px solid #ddd;
+            background: #f5f5f5; white-space: nowrap;
+        }
+        .audit-table td { padding: 8px; border-bottom: 1px solid #eee; vertical-align: top; }
+        .audit-diff {
+            font-family: Consolas, monospace; font-size: 12px; white-space: pre-wrap;
+            word-break: break-all; background: #f8f9f9; padding: 6px; border-radius: 4px;
+            margin-top: 4px;
+        }
+        .audit-pager { display: flex; gap: 10px; align-items: center; margin-top: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="/orders-list">PO-ZAIKO</a></div>
+        <div class="menu-btn buttons-group">
+
+            <ul></ul>
+        </div>
+        <div class="user-dropdown">
+            <button class="user-btn"><span id="user-fullname">...</span> ▼</button>
+            <div class="user-dropdown-content">
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Nhật ký thao tác</h1>
+
+        <div class="audit-filters">
+            <div class="f">
+                <label for="f-action">Hành động</label>
+                <select id="f-action"><option value="">— Tất cả —</option></select>
+            </div>
+            <div class="f">
+                <label for="f-entity">Bảng / thực thể</label>
+                <select id="f-entity">
+                    <option value="">— Tất cả —</option>
+                    <option value="User">Tài khoản</option>
+                    <option value="UserRole">Phân quyền</option>
+                    <option value="Role">Vai trò</option>
+                    <option value="Product">Sản phẩm</option>
+                    <option value="Vendor">Nhà cung cấp</option>
+                    <option value="Order">Đơn hàng</option>
+                    <option value="Stock">Tồn kho</option>
+                    <option value="StockTransaction">Bút toán kho</option>
+                    <option value="RefreshToken">Phiên đăng nhập</option>
+                </select>
+            </div>
+            <div class="f">
+                <label for="f-entity-id">Mã bản ghi</label>
+                <input type="text" id="f-entity-id" placeholder="VD: LK001">
+            </div>
+            <div class="f">
+                <label for="f-from">Từ ngày</label>
+                <input type="date" id="f-from">
+            </div>
+            <div class="f">
+                <label for="f-to">Đến ngày</label>
+                <input type="date" id="f-to">
+            </div>
+            <div class="f">
+                <label>&nbsp;</label>
+                <button id="btn-filter">Lọc</button>
+            </div>
+            <div class="f">
+                <label>&nbsp;</label>
+                <button id="btn-reset">Bỏ lọc</button>
+            </div>
+        </div>
+
+        <div id="audit-body">Đang tải...</div>
+
+        <div class="audit-pager">
+            <button id="btn-prev">← Trang trước</button>
+            <span id="page-info" style="font-size:13px;color:#5d6d7e"></span>
+            <button id="btn-next">Trang sau →</button>
+        </div>
+    </div>
+
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/audit-logs.js"></script>
+</body>
+</html>

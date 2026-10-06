@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Thống kê</title>
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.png">
+    <style>
+        .dashboard-container { padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+        .stat-card h3 { color: #666; font-size: 14px; margin-bottom: 10px; }
+        .stat-card .number { font-size: 32px; font-weight: bold; color: #333; }
+        .stat-card.blue .number { color: #2196F3; }
+        .stat-card.green .number { color: #4CAF50; }
+        .stat-card.orange .number { color: #FF9800; }
+        .stat-card.red .number { color: #f44336; }
+        .section { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .section h2 { margin-bottom: 15px; color: #333; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f5f5f5; font-weight: 600; }
+
+        .order-status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .status-card { padding: 15px; border-radius: 8px; text-align: center; }
+        .status-card .number { font-size: 28px; font-weight: bold; }
+        .status-card.draft { background: #fff3e0; color: #e65100; }
+        .status-card.confirmed { background: #e3f2fd; color: #1565c0; }
+        .status-card.stocked { background: #e8f5e9; color: #2e7d32; }
+        .status-card.cancelled { background: #fdecea; color: #c62828; }
+    </style>
+    <link rel="stylesheet" href="/assets/css/topbar.css">
+    <link rel="stylesheet" href="/assets/css/controls.css">
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="/orders-list">PO-ZAIKO</a></div>
+        <div class="menu-btn buttons-group">
+
+            <ul></ul>
+        </div>
+        <div class="user-dropdown">
+            <button class="user-btn"><span id="user-fullname">...</span> ▼</button>
+            <div class="user-dropdown-content">
+                <a href="#" id="logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>📊 Dashboard - Tổng quan hệ thống</h1>
+
+        <div class="stats-grid">
+            <div class="stat-card blue">
+                <h3>Tổng người dùng</h3>
+                <div class="number" id="totalUsers">-</div>
+            </div>
+            <div class="stat-card green">
+                <h3>Tổng sản phẩm</h3>
+                <div class="number" id="totalProducts">-</div>
+            </div>
+            <div class="stat-card orange">
+                <h3>Tổng đơn hàng</h3>
+                <div class="number" id="totalOrders">-</div>
+            </div>
+            <div class="stat-card red">
+                <h3>Tổng NCC</h3>
+                <div class="number" id="totalVendors">-</div>
+            </div>
+        </div>
+
+        <div class="order-status-grid">
+            <div class="status-card draft">
+                <h3>Bản nháp</h3>
+                <div class="number" id="ordersDraft">-</div>
+            </div>
+            <div class="status-card confirmed">
+                <h3>Đã xác nhận</h3>
+                <div class="number" id="ordersConfirmed">-</div>
+            </div>
+            <div class="status-card stocked">
+                <h3>Đã nhập kho</h3>
+                <div class="number" id="ordersStocked">-</div>
+            </div>
+
+            <div class="status-card cancelled">
+                <h3>Đã huỷ</h3>
+                <div class="number" id="ordersCancelled">-</div>
+            </div>
+        </div>
+
+        <div class="section" id="lowStockSection" style="display:none">
+            <h2>⚠️ Sắp hết hàng - cần đặt bổ sung</h2>
+            <table>
+                <thead>
+                    <tr><th>Mã SP</th><th>Tên SP</th><th>Còn lại</th><th>Định mức</th><th>Thiếu</th></tr>
+                </thead>
+                <tbody id="lowStockTable"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🏆 Top 5 sản phẩm tồn kho nhiều nhất</h2>
+            <table>
+                <thead>
+                    <tr><th>Mã SP</th><th>Tên SP</th><th>Tồn kho</th></tr>
+                </thead>
+                <tbody id="topStockTable"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📋 5 đơn hàng gần đây</h2>
+            <table>
+                <thead>
+                    <tr><th>Mã đơn</th><th>NCC</th><th>Ngày</th><th>Trạng thái</th><th>Tổng tiền</th></tr>
+                </thead>
+                <tbody id="recentOrdersTable"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>💰 Tổng giá trị tồn kho: <span id="totalStockValue" style="color:#4CAF50">-</span></h2>
+        </div>
+    </div>
+
+    <script src="/assets/vendor/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script>
+    $(function(){
+
+        $.ajax({
+            url: '/api/dashboard',
+            method: 'GET',
+            success: function(res) {
+                if(res.success) {
+                    const d = res.data;
+
+                    $('#totalUsers').text(d.totalUsers);
+                    $('#totalProducts').text(d.totalProducts);
+                    $('#totalOrders').text(d.totalOrders);
+                    $('#totalVendors').text(d.totalVendors);
+                    $('#ordersDraft').text(d.ordersDraft);
+                    $('#ordersConfirmed').text(d.ordersConfirmed);
+                    $('#ordersStocked').text(d.ordersStocked);
+                    $('#ordersCancelled').text(d.ordersCancelled);
+
+                    $('#totalStockValue').text(formatAmount(d.totalStockValue) + ' VNĐ');
+
+                    let topHtml = '';
+                    d.topStockItems.forEach(item => {
+                        topHtml += `<tr><td>${escapeHtml(item.itemCode)}</td><td>${escapeHtml(item.itemName)}</td><td>${formatAmount(item.quantity)}</td></tr>`;
+                    });
+                    $('#topStockTable').html(topHtml);
+
+                    const low = d.lowStockItems || [];
+                    if (low.length > 0) {
+                        let lowHtml = '';
+                        low.forEach(item => {
+                            lowHtml += `<tr>` +
+                                `<td>${escapeHtml(item.itemCode)}</td>` +
+                                `<td>${escapeHtml(item.itemName)}</td>` +
+                                `<td style="color:#c0392b;font-weight:600">${formatAmount(item.quantity)} ${escapeHtml(item.unit)}</td>` +
+                                `<td>${formatAmount(item.minQuantity)} ${escapeHtml(item.unit)}</td>` +
+                                `<td style="color:#c0392b">-${formatAmount(item.shortage)}</td>` +
+                                `</tr>`;
+                        });
+                        $('#lowStockTable').html(lowHtml);
+                        $('#lowStockSection').show();
+                    } else {
+                        $('#lowStockSection').hide();
+                    }
+
+                    let orderHtml = '';
+                    d.recentOrders.forEach(o => {
+                        orderHtml += `<tr><td>${escapeHtml(o.orderNo)}</td><td>${escapeHtml(o.vendorName)}</td><td>${escapeHtml(o.orderDate)}</td><td>${escapeHtml(o.statusText)}</td><td>${formatAmount(o.totalAmount)}</td></tr>`;
+                    });
+                    $('#recentOrdersTable').html(orderHtml);
+                }
+            },
+            error: function(xhr) {
+
+                let msg = 'Không tải được dữ liệu Dashboard.';
+                try { msg = JSON.parse(xhr.responseText).message || msg; } catch(e) {}
+                alert(msg);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
